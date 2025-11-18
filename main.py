@@ -1,7 +1,7 @@
-from sqlalchemy.orm import selectinload
+import sys
 
-from shop import Order
-
+from shop import OrderPayment
 
 if __name__ == '__main__':
-    Order.LoadOptions.load_options()
+    sys.setrecursionlimit(60)
+    OrderPayment.LoadOptions.load_options()
