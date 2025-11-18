@@ -1,10 +1,7 @@
-from typing import Any, Mapping
-
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship, selectinload, selectin_polymorphic
 
 from base import Base
-from shop import Order
 
 
 class Offer(Base):

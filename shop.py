@@ -3,7 +3,7 @@ from __future__ import annotations
 import typing
 
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, selectinload
+from sqlalchemy.orm import Mapped, mapped_column, relationship, selectinload
 
 from base import Base
 
