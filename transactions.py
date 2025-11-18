@@ -13,21 +13,10 @@ class Offer(Base):
     class LoadOptions:
         @classmethod
         def load_options(cls):
-            return [selectin_polymorphic(Offer, [Shop_Offer, Other_Offer])]
+            return []
 
     id: Mapped[int] = mapped_column(primary_key=True)
     type: Mapped[str] = mapped_column()
-
-    __mapper_args__: Mapping[str, Any] = {"polymorphic_on": type, "polymorphic_abstract": True}
-
-
-class Shop_Offer(Offer):
-    __mapper_args__: Mapping[str, Any] = {"polymorphic_identity": "shop"}
-    order_id: Mapped[int] = mapped_column(ForeignKey(Order.id))
-
-class Other_Offer(Offer):
-    __mapper_args__: Mapping[str, Any] = {"polymorphic_identity": "other"}
-    other_id: Mapped[int] = mapped_column()
 
 
 class Transaction(Base):
@@ -37,7 +26,7 @@ class Transaction(Base):
         @classmethod
         def load_options(cls):
             return (
-                selectinload(Transaction.offer).options(*Shop_Offer.LoadOptions.load_options()),
+                selectinload(Transaction.offer),
             )
 
     id: Mapped[int] = mapped_column(primary_key=True)
